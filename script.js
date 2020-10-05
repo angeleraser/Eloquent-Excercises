@@ -94,3 +94,46 @@ const recursiveCount = (indx) => {
     return recursiveCount(indx - 1);
   }
 };
+
+const concatArrays = (listOfArrays = []) =>
+  listOfArrays.reduce((arrOne, arrTwo) => arrOne.concat(arrTwo), []);
+
+class Vector {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  add({ x, y }) {
+    this.x = this.x + x;
+    this.y = this.y + y;
+  }
+  rest({ x, y }) {
+    this.x = this.x - x;
+    this.y = this.y - y;
+  }
+  get length() {
+    const a = Math.pow(0 - this.x, 2);
+    const b = Math.pow(0 - this.y, 2);
+    return Math.round(Math.sqrt(a + b));
+  }
+}
+
+class CustomSet {
+  constructor() {
+    this.items = [];
+  }
+  add(el) {
+    if (this.items.every((item) => item !== el)) {
+      this.items.push(el);
+    }
+  }
+  delete(el) {
+    if (this.items.some((item) => item === el)) {
+      this.items = this.items.filter((val) => val !== el);
+    }
+  }
+  has(el) {
+    const elementIndex = ~this.items.indexOf(el);
+    return !!elementIndex ? true : false;
+  }
+};
