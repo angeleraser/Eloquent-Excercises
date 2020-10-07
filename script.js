@@ -94,10 +94,8 @@ const recursiveCount = (indx) => {
     return recursiveCount(indx - 1);
   }
 };
-
 const concatArrays = (listOfArrays = []) =>
   listOfArrays.reduce((arrOne, arrTwo) => arrOne.concat(arrTwo), []);
-
 class Vector {
   constructor(x, y) {
     this.x = x;
@@ -117,7 +115,6 @@ class Vector {
     return Math.round(Math.sqrt(a + b));
   }
 }
-
 class CustomSet {
   constructor() {
     this.items = [];
@@ -135,5 +132,25 @@ class CustomSet {
   has(el) {
     const elementIndex = ~this.items.indexOf(el);
     return !!elementIndex ? true : false;
+  }
+}
+
+String.prototype.replaceAll = function (searchValue, replaceValue) {
+  if (searchValue.length) {
+    const fix = !/\w/.test(searchValue) ? "\\" : "";
+    const search = new RegExp(`${fix + searchValue}`, "gi");
+    return this.valueOf().replace(search, replaceValue);
+  } else {
+    return this.valueOf();
+  }
+};
+
+const replaceIn = (string, searchValue, replaceValue) => {
+  if (searchValue.length && string.length) {
+    const fix = !/\w/.test(searchValue) ? "\\" : "";
+    const search = new RegExp(`${fix + searchValue}`, "gi");
+    return string.replace(search, replaceValue);
+  } else {
+    return string;
   }
 };
